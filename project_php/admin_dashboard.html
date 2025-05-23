@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ศูนย์ฝึกวิชาชีพ - LRU</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Prompt', sans-serif;
+}
+
+/* พื้นหลังหลัก */
+body {
+background-color: #1e1e1e;
+color: #f0f0f0;
+}
+
+/* Navbar */
+.navbar {
+background-color: #111;
+color: #f0f0f0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 40px;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 100;
+box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.navbar .logo img {
+height: 50px;
+}
+
+.navbar .nav-links {
+list-style: none;
+display: flex;
+gap: 20px;
+}
+
+.navbar .nav-links li a {
+color: #f0f0f0;
+text-decoration: none;
+font-weight: 500;
+padding: 8px 12px;
+border-radius: 6px;
+transition: 0.3s;
+}
+
+.navbar .nav-links li a:hover {
+background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-section {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 20rem 2rem;
+    transition: background-image 1s ease-in-out;
+}
+
+.main-section h1 {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.main-section p {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin: 1rem 0 2rem;
+}
+
+.btn {
+    background-color: #ff6a00;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #fff;
+}
+
+/* .featured-project {
+    margin-top: 100px;
+} */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #000;
+  }
+  
+  .modal-content input, .modal-content button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .modal-content button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+
+.training-projects {
+    background-color: #1a1a1a;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    text-align: center; /* Center the content */
+}
+
+.section-title h2 {
+    color: #fff;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    width: 100%;
+}
+
+.training-card {
+    background-color: #2e2e2e;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 300px;
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.training-card:hover {
+    transform: scale(1.05);
+}
+
+.training-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.training-content h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.training-content p {
+    margin: 0.5rem 0;
+    color: #cccccc;
+}
+
+.footer {
+    background-color: #111;
+    padding: 2rem;
+    text-align: center;
+    color: #888;
+}
+
+.training-card .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background-color: #ff6a00;
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.training-card .btn:hover {
+    background-color: #fff;
+}
+
+.training-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.training-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.services-section {
+background-color: #1a1a1a;
+padding: 3rem 2rem;
+text-align: center;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+margin-top: 2rem;
+}
+
+.service-box {
+background-color: #2e2e2e;
+padding: 2rem 1rem;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+transition: transform 0.3s ease;
+}
+
+.service-box:hover {
+transform: translateY(-5px);
+}
+
+.service-icon {
+width: 60px;
+height: 60px;
+margin-bottom: 1rem;
+}
+
+.service-box h3 {
+color: #ff6a00;
+margin-bottom: 0.5rem;
+}
+
+.service-box p {
+color: #ccc;
+font-size: 0.95rem;
+}
+
+.thankyou-section {
+background: linear-gradient(to right, #f0f4ff, #ffffff);
+padding: 60px 20px;
+text-align: center;
+border-top: 2px solid #e0e0e0;
+}
+
+.thankyou-title {
+font-size: 28px;
+color: #333;
+font-weight: 700;
+margin-bottom: 20px;
+}
+
+.thankyou-text {
+font-size: 18px;
+color: #555;
+max-width: 700px;
+margin: 0 auto;
+line-height: 1.6;
+}
+
+.featured-project {
+background: linear-gradient(135deg, #fff9f0, #ffe8cc);
+padding: 4rem 2rem;
+margin-bottom: 4rem;
+border-radius: 20px;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+width: 100%;
+}
+
+.featured-content {
+max-width: 1300px;
+margin: 0 auto;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 3rem;
+}
+
+.featured-details {
+flex: 1 1 500px;
+}
+
+.featured-details h2 {
+font-size: 2.2rem;
+color: #333;
+margin-bottom: 1rem;
+}
+
+.featured-details p {
+font-size: 1.1rem;
+color: #444;
+line-height: 1.8;
+margin-bottom: 1rem;
+}
+
+.register-btn {
+display: inline-block;
+background-color: #ff6a00;
+color: white;
+padding: 0.75rem 1.5rem;
+text-decoration: none;
+border-radius: 10px;
+font-size: 1rem;
+font-weight: bold;
+transition: background 0.3s;
+}
+
+.register-btn:hover {
+background-color: #e65c00;
+}
+
+.featured-image {
+flex: 1 1 400px;
+}
+
+.featured-image img {
+width: 100%;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.featured-content {
+flex-direction: column;
+}
+
+.featured-details h2 {
+font-size: 1.8rem;
+}
+
+.register-btn {
+width: 100%;
+text-align: center;
+}
+}
+
+.sec-content1 {
+padding: 4rem 2rem;
+background: #fdfdfd;
+text-align: center;
+}
+
+.ct-con1 {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.ct-conw2 h2 {
+font-size: 2rem;
+margin-bottom: 0.5rem;
+color: #333;
+}
+
+.ct-conw2 p {
+font-size: 1rem;
+color: #666;
+margin-bottom: 2rem;
+}
+
+.course-pup {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2rem;
+}
+
+.course1, .course2, .course3, .course4 {
+background: #ffffff;
+padding: 2rem;
+border-radius: 15px;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+transition: transform 0.3s ease;
+}
+
+.course1:hover,
+.course2:hover,
+.course3:hover,
+.course4:hover {
+transform: translateY(-5px);
+}
+
+.img img {
+width: 80px;
+height: 80px;
+margin-bottom: 1rem;
+}
+
+.img h1 {
+font-size: 1.3rem;
+color: #333;
+margin-bottom: 0.5rem;
+}
+
+.img p {
+font-size: 1rem;
+color: #666;
+line-height: 1.6;
+}
+
+.info-section {
+padding: 3rem 2rem;
+background-color: #f9f9f9;
+text-align: center;
+}
+
+.section-title h2 {
+font-size: 2rem;
+color: #333;
+margin-bottom: 2rem;
+}
+
+.info-grid {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-align: left;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.info-left, .info-right {
+flex: 1 1 45%;
+}
+
+.info-left p,
+.info-right p {
+font-size: 1.1rem;
+color: #444;
+margin-bottom: 1.2rem;
+line-height: 1.6;
+}
+
+.info-section-alt {
+padding: 3rem 2rem;
+background-color: #f4f4f4;
+}
+
+.section-title h2 {
+font-size: 2rem;
+text-align: center;
+margin-bottom: 2rem;
+color: #333;
+}
+
+.info-item {
+max-width: 900px;
+margin: 1.5rem auto;
+padding: 1.2rem 1.5rem;
+background-color: white;
+border-radius: 12px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+transition: all 0.3s ease-in-out;
+}
+
+.info-item.left {
+text-align: left;
+margin-left: 0;
+}
+
+.info-item.right {
+text-align: right;
+margin-right: 0;
+}
+
+.info-item p {
+font-size: 1.1rem;
+line-height: 1.8;
+color: #444;
+}
+
+.footer {
+    background-color: #111;
+    color: #f0f0f0;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  .footer h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  .footer-left, .footer-center, .footer-right {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .fb-box-vertical {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .quick-links,
+  .contact-info {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .quick-links li,
+  .contact-info li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .quick-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .quick-links a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+  
+  .footer .icon {
+    width: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: brightness(0.9);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="./User/index.html">หน้าหลัก</a></li>
+      <li><a href="./User/courses.html">คอร์สอบรม</a></li>
+      <li><a href="./User/performance.html">ผลงานและบริการ</a></li>
+  
+      <!-- เมนูผู้ใช้ (หลังเข้าสู่ระบบ) -->
+      <li class="user-menu">
+        <a href="#" id="userMenuBtn">
+          <img src="https://via.placeholder.com/30" alt="Profile" style="border-radius: 50%; vertical-align: middle;" />
+          <span style="margin-left: 5px;">ผุ้ดูแลระบบ ▼</span>
+        </a>
+        <ul class="dropdown" id="userMenu" style="display: none;">
+          <li><a href="member_profile.html">โปรไฟล์ของฉัน</a></li>
+          <li><a href="edit_profile.html">แก้ไขข้อมูล</a></li>
+          <li><a href="logout.html" style="color: red;">ออกจากระบบ</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Section Content -->
+  <section class="main-section" id="hero">
+    <div class="content">
+      <h1>ยินดีต้อนรับสู่ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์</h1>
+      <p>
+        เรามุ่งมั่นในการพัฒนาทักษะอาชีพ เพิ่มโอกาสในการเรียนรู้ และเติบโตในสายงานเทคโนโลยีสารสนเทศ
+      </p>
+      <a href="login.html" class="btn">เข้าสู่ระบบ / ลงทะเบียน</a>
+    </div>
+  </section>
+
+  <section class="featured-project">
+    <div class="featured-content">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q1NTfGVufDB8fDB8fHww" alt="รูปโครงการอบรม" />
+      </div>
+      <div class="featured-details">
+        <h2>โครงการอบรม: พัฒนาเว็บไซต์ด้วย HTML/CSS/JS</h2>
+        <p>อบรมเชิงปฏิบัติการเกี่ยวกับการพัฒนาเว็บไซต์พื้นฐาน เหมาะสำหรับผู้เริ่มต้น หรือผู้ที่ต้องการพัฒนาทักษะ Front-End</p>
+        <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคารวิทยาศาสตร์ ชั้น 3</p>
+        <!-- ปุ่มเดิม -->
+        <a href="#" class="register-btn" onclick="openModal()">ลงทะเบียน</a>
+
+        <!--  Modal Register Form -->
+        <div id="registerModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>ฟอร์มลงทะเบียนเข้าร่วมอบรม</h2>
+            <form>
+              <label for="fullname" style="color: black;">ชื่อ-นามสกุล</label>
+              <input type="text" id="fullname" name="fullname" required>
+
+              <label for="phone" style="color: black;">เบอร์โทรศัพท์</label>
+              <input type="tel" id="phone" name="phone" required>
+
+              <label for="email" style="color: black;">อีเมล</label>
+              <input type="email" id="email" name="email" required>
+
+              <button type="submit">ส่งข้อมูล</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Training Projects Section -->
+  <section class="training-projects">
+    <div class="training-container">
+      <div class="section-title">
+        <h2>โครงการอบรมที่กำลังจะเกิดขึ้น</h2>
+      </div>
+      <div class="training-list">
+        <div class="training-card">
+          <img src="https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rmx1dHRlcnxlbnwwfHwwfHx8MA%3D%3D" alt="training image" class="training-img" />
+          <div class="training-content">
+            <h3>พัฒนาแอปพลิเคชันด้วย Flutter</h3>
+            <p>เรียนรู้การพัฒนาแอปพลิเคชันมือถือข้ามแพลตฟอร์มด้วย Flutter</p>
+            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
+            <a href="#details" class="btn">ดูรายละเอียด</a>
+          </div>
+        </div>
+        <div class="training-card">
+          <img src="" alt="training image" class="training-img" />
+          <div class="training-content">
+            <h3>การจัดการฐานข้อมูล MySQL</h3>
+            <p>เรียนรู้การออกแบบและจัดการฐานข้อมูลในระบบ MySQL</p>
+            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
+            <a href="#details" class="btn">ดูรายละเอียด</a>
+          </div>
+        </div>
+        <div class="training-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3bK16kVYNWBjhxZ6CbhEf6m2cq6SdhPbmQ&s" alt="training image" class="training-img" />
+          <div class="training-content">
+            <h3>เทคนิคความปลอดภัยไซเบอร์</h3>
+            <p>เรียนรู้พื้นฐานความปลอดภัยไซเบอร์และวิธีการป้องกันข้อมูลจากการโจมตี</p>
+            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
+            <a href="#details" class="btn">ดูรายละเอียด</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / Icon Section -->
+  <section class="info-section-alt">
+    <div class="section-title">
+      <h2>🧠 เกี่ยวกับเว็บไซต์ศูนย์ฝึกวิชาชีพ</h2>
+    </div>
+  
+    <div class="info-item left">
+      <p>🧑‍🏫 <strong>แหล่งเรียนรู้:</strong> เรารวบรวมสื่อการเรียนรู้ด้านไอทีที่เหมาะสำหรับทุกระดับ ไม่ว่าจะเป็นวิดีโอการสอนพื้นฐาน บทความเทคนิคเฉพาะทาง ไปจนถึงคู่มือปฏิบัติงานจริง เพื่อให้คุณสามารถเรียนรู้และฝึกฝนได้ด้วยตัวเองทุกที่ทุกเวลา</p>
+    </div>
+  
+    <div class="info-item right">
+      <p>📁 <strong>ผลงานนักศึกษา:</strong> ชมตัวอย่างโปรเจกต์จริงจากนักศึกษาที่ผ่านการอบรมจากศูนย์ฝึก ไม่ว่าจะเป็นแอปพลิเคชัน เว็บไซต์ หรือระบบจัดการต่างๆ เพื่อเป็นแรงบันดาลใจให้คุณเริ่มสร้างสรรค์ผลงานของตัวเอง</p>
+    </div>
+  
+    <div class="info-item left">
+      <p>🛠️ <strong>ให้คำปรึกษา:</strong> หากคุณมีคำถามเกี่ยวกับสายงานด้านไอที การเลือกอาชีพ หรือการเรียนต่อ เรายินดีให้คำแนะนำจากผู้เชี่ยวชาญที่มีประสบการณ์ตรง พร้อมช่วยชี้แนะแนวทางที่เหมาะสมกับคุณ</p>
+    </div>
+  
+    <div class="info-item right">
+      <p>🌐 <strong>ระบบอบรมออนไลน์:</strong> คุณสามารถเข้าร่วมคอร์สต่างๆ ที่เปิดสอนจากศูนย์ฝึกผ่านระบบออนไลน์ ไม่ต้องเดินทาง พร้อมเนื้อหาครบถ้วน เข้าใจง่าย และสามารถเรียนซ้ำได้ตามต้องการ</p>
+    </div>
+  </section>  
+
+<!-- ข้อความขอบคุณ -->
+<section class="thankyou-section">
+  <div class="container">
+    <h2 class="thankyou-title">ขอบคุณที่เข้ามาเยี่ยมชมเว็บไซต์ของเรา</h2>
+    <p class="thankyou-text">
+      หวังว่าเนื้อหาและบริการที่เราจัดเตรียมไว้จะเป็นประโยชน์ และช่วยพัฒนาองค์ความรู้ของคุณได้ไม่มากก็น้อย 🙏
+    </p>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v22.0">
+    </script>
+
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>ติดตามเพจศูนย์ฝึก</h3>
+        <div class="fb-box-vertical">
+          <div class="fb-page"
+            data-href="https://www.facebook.com/profile.php?id=61554638219599"
+            data-tabs="timeline"
+            data-width="250"
+            data-height="400"
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="true">
+            <blockquote
+              cite="https://www.facebook.com/profile.php?id=61554638219599"
+              class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/profile.php?id=61554638219599">
+                ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย
+              </a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <h3>เมนูลัด</h3>
+        <ul class="nav-links">
+          <li><a href="index.html">หน้าหลัก</a></li>
+          <li><a href="courses.html">คอร์สอบรม</a></li>
+          <li><a href="performance.html">ผลงานและบริการ</a></li>
+          <li><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <h3>ติดต่อเรา</h3>
+        <ul class="contact-info">
+          <li><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="fb" class="icon" /> Facebook: LRU Digital Training</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png" alt="line" class="icon" /> Line: @lrucscenter</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="email" class="icon" /> Email: lrudigitalstartupteam.cs@gmail.com</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="phone" class="icon" /> โทร: 042-000-000</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย</p>
+    </div>
+  </footer>
+  
+
+  <!-- JavaScript for background image slider -->
+  <script>
+    const images = [
+      'https://images.unsplash.com/photo-1742827871480-4962b0653e1d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8',
+      'https://plus.unsplash.com/premium_photo-1663075847012-c781e0d194ce?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZ3JhbW1lcnxlbnwwfHwwfHx8MA%3D%3D',
+      'https://images.unsplash.com/photo-1742827871480-4962b0653e1d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8',
+    ];
+  
+    let index = 0;
+    const section = document.getElementById('hero');
+  
+    function changeBackground() {
+      section.style.backgroundImage = `url('${images[index]}')`;
+      section.style.backgroundSize = 'cover';
+      section.style.backgroundPosition = 'center';
+      section.style.transition = 'background-image 1s ease-in-out';
+      index = (index + 1) % images.length;
+    }
+  
+    // เรียกใช้ทุก 5 วินาที
+    setInterval(changeBackground, 5000);
+  
+    // เรียกทันทีเมื่อโหลดหน้า
+    changeBackground();
+
+    function openModal() {
+    document.getElementById("registerModal").style.display = "block";
+  }
+
+    function closeModal() {
+    document.getElementById("registerModal").style.display = "none";
+  }
+
+  // ปิด modal เมื่อคลิกนอกกล่อง
+  window.onclick = function(event) {
+    const modal = document.getElementById("registerModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  
+  </script>
+  
+</body>
+
+</html>

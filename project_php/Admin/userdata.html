@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+  <style>
+    aside ul li a {
+      color: black;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.25rem;
+    }
+    aside ul li a:hover {
+      color: #ff7a00;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transform: translateX(4px);
+    }
+    aside ul li a::after {
+      content: '\2192';
+      color: transparent;
+      transition: color 0.3s;
+      margin-left: auto;
+    }
+    aside ul li a:hover::after {
+      color: #ff7a00;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <!-- Sidebar -->
+<!-- Sidebar -->
+<aside class="w-64 bg-white text-black p-4 space-y-4 sticky top-0 h-screen border-r">
+    <h2 class="text-2xl font-bold mb-4" style="color: #ff7a00;">Admin</h2>
+    <ul class="space-y-2">
+      <li><a href="admin_dashbord.html">Dashboard</a></li>
+      <li><a href="../User/index.html">Home</a></li>
+      <li><a href="userdata.html">User Data</a></li>
+      <li><a href="training_project.html">ข้อมูลโครงการอบรม</a></li>
+      <li><a href="leaning.html">แหล่งการเรียนรู้</a></li>
+      <li><a href="performance.html">ผลงานและบริการ</a></li>
+      <li><a href="consultation.html">การให้คำปรึกษา</a></li>
+      <li><a href="contact.html">ข้อมูลการติดต่อ</a></li>
+      <li><a href="account_setting.html">การตั้งค่าบัญชี</a></li>
+      <li><a href="setting.html">การตั้งค่า</a></li>
+    </ul>
+  </aside>
+  
+  
+  <!-- Main content -->
+  <!-- Main content -->
+<div class="flex-1 p-6">
+    <!-- Navbar -->
+    <div class="flex justify-end items-center mb-6">
+      <span class="mr-4 font-semibold">Admin Name</span>
+      <img src="https://via.placeholder.com/40" class="rounded-full w-10 h-10" alt="Profile">
+    </div>
+  
+    <!-- Dashboard content -->
+    <h1 class="text-2xl font-bold mb-6">User Data</h1>
+  
+    <!-- Dropdown select for User, Expert, Admin -->
+    <div class="mb-6">
+      <label for="userType" class="block font-medium mb-2">เลือกประเภทผู้ใช้</label>
+      <select id="userType" class="w-full p-2 border border-gray-300 rounded-md">
+        <option value="all">ทั้งหมด</option>
+        <option value="user">User</option>
+        <option value="expert">Expert</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+  
+    <!-- Table to display user data -->
+    <div class="bg-white shadow p-4 mb-8">
+      <h2 class="text-lg font-semibold mb-2">ข้อมูลสมาชิก</h2>
+      <table class="w-full text-left border border-gray-200">
+        <thead>
+          <tr>
+            <th class="border px-4 py-2">ID</th>
+            <th class="border px-4 py-2">FullName</th>
+            <th class="border px-4 py-2">Username</th>
+            <th class="border px-4 py-2">Email</th>
+            <th class="border px-4 py-2">Status</th>
+            <th class="border px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <!-- User data will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+    // ตัวอย่างข้อมูลสมาชิกล่วงหน้า
+    const users = [
+      { id: 1, fullName: "John Doe", username: "johndoe", email: "john@example.com", status: "User" },
+      { id: 2, fullName: "Jane Smith", username: "janesmith", email: "jane@example.com", status: "Expert" },
+      { id: 3, fullName: "Admin Guy", username: "admin1", email: "admin@example.com", status: "Admin" }
+    ];
+  
+    // แสดงผลข้อมูลตามประเภทที่เลือก
+    const dropdown = document.getElementById("userType");
+    const tableBody = document.getElementById("userTableBody");
+  
+    function renderTable(userType) {
+      tableBody.innerHTML = "";
+      const filtered = userType === "all" ? users : users.filter(u => u.status.toLowerCase() === userType);
+      filtered.forEach(user => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="border px-4 py-2">${user.id}</td>
+          <td class="border px-4 py-2">${user.fullName}</td>
+          <td class="border px-4 py-2">${user.username}</td>
+          <td class="border px-4 py-2">${user.email}</td>
+          <td class="border px-4 py-2">${user.status}</td>
+          <td class="border px-4 py-2">
+            <button class="text-blue-500 hover:underline">แก้ไข</button>
+            <button class="text-red-500 hover:underline ml-4">ลบ</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  
+    dropdown.addEventListener("change", () => renderTable(dropdown.value));
+    renderTable("all"); // โหลดข้อมูลเริ่มต้น
+  </script>
+  
+  
+</body>
+</html>
