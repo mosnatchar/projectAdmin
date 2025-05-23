@@ -306,7 +306,9 @@
 
     const formData = new FormData(this);
 
-    fetch('http://localhost:8080/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
+    // fetch('http://localhost/my-app/User/login_process.php', {  // ส่งข้อมูลไป process.php
+    // fetch('http://localhost:8080/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
+    fetch('https://my-php-api-1.onrender.com/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
       method: 'POST',
       body: formData
     })

@@ -282,12 +282,16 @@
 
     const formData = new FormData(this);
 
-    fetch('http://localhost:8080/api/User/register_process.php', {  // ส่งข้อมูลไป process.php
+    // fetch('http://localhost/my-app/User/register_process.php', {  // ส่งข้อมูลไป process.php
+    // fetch('http://localhost:8080/api/User/register_process.php', {  // ส่งข้อมูลไป process.php
+    fetch('https://my-php-api-1.onrender.com/api/User/register_process.php', {  // ส่งข้อมูลไป process.php
       method: 'POST',
       body: formData
     })
       .then(response => response.text()) // หรือ .json() ถ้า PHP ส่ง JSON
       .then(data => {
+        console.log("🚀 ~ data:", data)
+
         Swal.fire({
           position: "top-end",
           icon: "success",
