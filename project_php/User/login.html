@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <title>เข้าสู่ระบบ | ศูนย์ฝึกวิชาชีพ</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    body {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    .navbar {
+      background-color: #111;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+
+    .navbar .logo img {
+      height: 50px;
+    }
+
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar .nav-links li a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .navbar .nav-links li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 120px auto 60px;
+      background-color: #2a2a2a;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .login-container label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .login-container input[type="username"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+      background-color: #444;
+      color: #fff;
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .remember-row input {
+      margin-right: 10px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #444;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-container button:hover {
+      background-color: #666;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .register-link a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #111;
+      color: #f0f0f0;
+      padding: 40px 20px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .footer h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .fb-box-vertical {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .quick-links,
+    .contact-info {
+      list-style: none;
+      padding: 0;
+    }
+
+    .quick-links li,
+    .contact-info li {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .quick-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .quick-links a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    .footer .icon {
+      width: 16px;
+      margin-right: 8px;
+      vertical-align: middle;
+      filter: brightness(0.9);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">หน้าหลัก</a></li>
+      <li><a href="courses.html">คอร์สอบรม</a></li>
+      <li><a href="performance.html">ผลงานและบริการ</a></li>
+      <li><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h2>เข้าสู่ระบบ</h2>
+    <form id="login" method="POST">
+      <label for="username">ชื่อผู้ใช้ (Username)</label>
+      <input type="username" id="username" name="username" required>
+
+      <label for="password">รหัสผ่าน</label>
+      <input type="password" id="password" name="password" required>
+
+      <div class="remember-row">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">จดจำรหัสผ่าน</label>
+      </div>
+
+      <button type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <div class="register-link">
+      <p>ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v22.0">
+    </script>
+
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>ติดตามเพจศูนย์ฝึก</h3>
+        <div class="fb-box-vertical">
+          <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=61554638219599" data-tabs="timeline" data-width="250" data-height="400" data-small-header="false"
+            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/profile.php?id=61554638219599" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/profile.php?id=61554638219599">
+                ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย
+              </a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <h3>เมนูลัด</h3>
+        <ul class="quick-links">
+          <li><a href="#login">เข้าสู่ระบบ</a></li>
+          <li><a href="courses.php">คอร์สอบรม</a></li>
+          <li><a href="#services">แหล่งเรียนรู้</a></li>
+          <li><a href="#contact">ติดต่อเรา</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <h3>ติดต่อเรา</h3>
+        <ul class="contact-info">
+          <li><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="fb" class="icon" /> Facebook: LRU Digital Training</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png" alt="line" class="icon" /> Line: @lrucscenter</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="email" class="icon" /> Email: lrudigitalstartupteam.cs@gmail.com</li>
+          <li><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="phone" class="icon" /> โทร: 042-000-000</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย</p>
+    </div>
+  </footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // โหลดข้อมูล username ถ้ามีเก็บไว้ใน localStorage
+  window.onload = function () {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      const jsonData = JSON.parse(jsonPayload)
+
+      document.getElementById('username').value = jsonData.username;
+      document.getElementById('remember').checked = true;
+    }
+  };
+  document.getElementById('login').addEventListener('submit', function (event) {
+    event.preventDefault(); // ป้องกันหน้ารีโหลด
+
+    const formData = new FormData(this);
+
+    fetch('http://localhost:8080/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
+      .then(data => {
+        const remember = document.getElementById('remember').checked;
+        if (remember) {
+          // localStorage
+          localStorage.setItem('token', data.token);
+        }
+        if (data.token) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "สำเร็จ!",
+            text: data.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          setTimeout(() => {
+            location.href = "index.html";
+          }, 2000);
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "ไม่สำเร็จ!",
+            text: data.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
+</script>
+
+</html>
