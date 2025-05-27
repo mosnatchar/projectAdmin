@@ -29,4 +29,8 @@ function verifyToken() {
       });
   }
 }
+function logOut() {
+  localStorage.removeItem("token");
+  location.href = "login.html";
+}
 verifyToken();
