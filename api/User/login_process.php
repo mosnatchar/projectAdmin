@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) > 0) {
     if (password_verify($password, $row["password"])) {
         // 🟢 รหัสผ่านถูกต้อง → สร้าง JWT
         $payload = [
-            'uid' => 1,
+            'uid' => (int) $row['id'],
             'username' => $username,
             'exp' => time() + 3600 // หมดอายุใน 1 ชม.
         ];

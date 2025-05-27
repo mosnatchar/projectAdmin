@@ -284,6 +284,7 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../env.js"></script>
 <script>
   // โหลดข้อมูล username ถ้ามีเก็บไว้ใน localStorage
   window.onload = function () {
@@ -307,18 +308,18 @@
     const formData = new FormData(this);
 
     // fetch('http://localhost/my-app/User/login_process.php', {  // ส่งข้อมูลไป process.php
-    // fetch('http://localhost:8080/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
-    fetch('https://my-php-api-1.onrender.com/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
+    fetch(`${ENV.API_URL}/api/User/login_process.php`, {  // ส่งข้อมูลไป process.php
+      // fetch('https://my-php-api-1.onrender.com/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
       method: 'POST',
       body: formData
     })
       .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
       .then(data => {
         const remember = document.getElementById('remember').checked;
-        if (remember) {
-          // localStorage
-          localStorage.setItem('token', data.token);
-        }
+        // if (remember) {
+        // localStorage
+        localStorage.setItem('token', data.token);
+        // }
         if (data.token) {
           Swal.fire({
             position: "top-end",

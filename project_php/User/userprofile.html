@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,58 +19,71 @@
       border-radius: 0.375rem;
       margin-bottom: 0.25rem;
     }
+
     aside ul li a:hover {
       color: #ff7a00;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       transform: translateX(4px);
     }
+
     aside ul li a::after {
       content: '\2192';
       color: transparent;
       transition: color 0.3s;
       margin-left: auto;
     }
+
     aside ul li a:hover::after {
       color: #ff7a00;
     }
+
     .tab-content {
       display: none;
     }
+
     .tab-content.active {
       display: block;
     }
+
     .portfolio-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
+
     .project-card {
       background-color: #f8f8f8;
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
     .project-thumbnail {
       width: 100%;
       height: 150px;
       object-fit: cover;
     }
+
     .project-details {
       padding: 15px;
     }
+
     .project-details h4 {
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
+
     .project-details p {
       font-size: 1rem;
       margin-bottom: 10px;
     }
+
     .project-actions {
       display: flex;
       gap: 10px;
     }
+
     .project-actions button {
       padding: 8px 12px;
       border: none;
@@ -78,11 +92,13 @@
       cursor: pointer;
       border-radius: 4px;
     }
+
     .project-actions button:hover {
       background-color: #e66b00;
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-800">
   <div class="flex min-h-screen">
     <!-- Sidebar -->
@@ -104,10 +120,23 @@
     <!-- Main content -->
     <div class="flex-1 p-6">
       <!-- Navbar -->
-      <div class="flex justify-end items-center mb-6">
-        <span class="mr-4 font-semibold">User Name</span>
-        <img src="https://via.placeholder.com/40" class="rounded-full w-10 h-10" alt="Profile">
-      </div>
+      <!-- <div class="flex justify-end items-center mb-6">
+        <img src="" id="display-profile-image" class="rounded-full w-10 h-10" alt="Profile">
+        <span class="mr-4 font-semibold" id="display-full-name"></span>
+      </div> -->
+      <ul class="flex flex-row justify-end right-0">
+        <li id="index-profile">
+          <div class="dropdown">
+            <button class="dropbtn"><img src="" alt="" srcset="" id="image-profile">
+              <p id="display-profile-fullname"></p>
+            </button>
+            <div class="dropdown-content">
+              <a href="userprofile.html">ดูโปรไฟล์</a>
+              <a style="cursor: pointer;" onclick="logOut()">ออกจากระบบ</a>
+            </div>
+          </div>
+        </li>
+      </ul>
 
       <!-- Content Sections -->
       <!-- <div id="home" class="tab-content active">
@@ -117,27 +146,27 @@
 
       <div id="dashboard" class="tab-content active">
         <h1 class="text-2xl font-bold mb-6">แดชบอร์ด</h1>
-      
+
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
           <!-- กล่อง: จำนวนผลงาน -->
           <div style="flex: 1; min-width: 250px; padding: 20px; background-color: #e3f2fd; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
             <h2 style="font-size: 1.2rem; color: #1565c0;">จำนวนผลงานที่อัปโหลด</h2>
             <p style="font-size: 2rem; font-weight: bold; margin-top: 10px;">5 รายการ</p>
           </div>
-      
+
           <!-- กล่อง: ขอคำปรึกษา -->
           <div style="flex: 1; min-width: 250px; padding: 20px; background-color: #e8f5e9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
             <h2 style="font-size: 1.2rem; color: #2e7d32;">จำนวนคำขอคำปรึกษา</h2>
             <p style="font-size: 2rem; font-weight: bold; margin-top: 10px;">3 รายการ</p>
           </div>
         </div>
-      
-      </div>      
+
+      </div>
 
       <!-- หน้าผลงานและบริการ -->
       <div id="performance" class="tab-content">
         <h1 class="text-2xl font-bold mb-6">ผลงานและบริการ</h1>
-        
+
         <!-- ฟอร์มเพิ่มผลงาน -->
         <div id="portfolio-form" class="portfolio-form" style="display: none; margin-top: 20px;">
           <h3>เพิ่มผลงานของคุณ</h3>
@@ -163,7 +192,7 @@
             <button type="submit">บันทึกผลงาน</button>
           </form>
         </div>
-        
+
         <button onclick="togglePortfolioForm()">เพิ่มผลงาน</button>
 
         <!-- แสดงรายการผลงานทั้งหมด -->
@@ -186,7 +215,7 @@
 
       <div id="consultation" class="tab-content">
         <h1 class="text-2xl font-bold mb-6">ขอคำปรึกษา</h1>
-      
+
         <!-- ประวัติการขอคำปรึกษา -->
         <div class="advice-history">
           <h4 class="text-xl font-semibold mb-4">ประวัติการขอคำปรึกษา</h4>
@@ -208,10 +237,10 @@
             </li>
           </ul>
         </div>
-      
+
         <!-- ปุ่มขอคำปรึกษา -->
         <button id="toggleAdviceForm" class="advice-btn" onclick="toggleAdviceForm()">ขอคำปรึกษา</button>
-      
+
         <!-- แบบฟอร์มขอคำปรึกษา -->
         <div id="adviceForm" class="advice-form" style="display: none;">
           <h4 class="text-xl font-semibold mb-4">เพิ่มคำขอคำปรึกษา</h4>
@@ -220,7 +249,7 @@
               <label for="advice-text">เนื้อหาคำขอ:</label>
               <textarea id="advice-text" name="advice_text" required></textarea>
             </div>
-      
+
             <div class="form-group">
               <label for="expert-type">เลือกประเภทผู้เชี่ยวชาญ:</label>
               <select id="expert-type" name="expert_type" required>
@@ -230,11 +259,11 @@
                 <option value="ประเภทที่ 3">Digitaltent</option>
               </select>
             </div>
-      
+
             <button type="submit" class="save-btn">ส่งคำขอ</button>
           </form>
         </div>
-      </div>      
+      </div>
 
       <div id="learning" class="tab-content">
         <h3 class="text-2xl font-bold mb-6">แหล่งเรียนรู้</h3>
@@ -258,23 +287,23 @@
       <div id="certificates" class="tab-content">
         <h3 class="text-2xl font-bold mb-6">ใบรับรองของฉัน</h3>
         <ul class="certificate-list">
-            <li><a href="#" class="open-certificate" data-image="images/certificate1.jpg">โครงการอบรมด้านเว็บดีไซน์</a></li>
-            <li><a href="#" class="open-certificate" data-image="images/certificate2.jpg">โครงการอบรม AI เบื้องต้น</a></li>
+          <li><a href="#" class="open-certificate" data-image="images/certificate1.jpg">โครงการอบรมด้านเว็บดีไซน์</a></li>
+          <li><a href="#" class="open-certificate" data-image="images/certificate2.jpg">โครงการอบรม AI เบื้องต้น</a></li>
         </ul>
-    </div>
-    
-    <!-- Certificate Modal -->
-    <div id="certificateModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <img id="certificateImage" src="" alt="Certificate Preview" class="certificate-preview">
-            <a id="downloadCertificate" href="" download class="download-btn">ดาวน์โหลดใบรับรอง</a>
-        </div>
-    </div>
+      </div>
 
-    <div id="contact-admin" class="tab-content">
+      <!-- Certificate Modal -->
+      <div id="certificateModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <img id="certificateImage" src="" alt="Certificate Preview" class="certificate-preview">
+          <a id="downloadCertificate" href="" download class="download-btn">ดาวน์โหลดใบรับรอง</a>
+        </div>
+      </div>
+
+      <div id="contact-admin" class="tab-content">
         <h2 class="text-2xl font-bold mb-6">ติดต่อแอดมิน</h2>
-        
+
         <!-- ประวัติการแชท -->
         <div class="chat-history">
           <div class="chat-message user">
@@ -286,20 +315,20 @@
             <span class="chat-time">เวลา: 12:45 น.</span>
           </div>
         </div>
-      
+
         <!-- ฟอร์มติดต่อแอดมิน -->
         <div class="contact-form">
           <textarea placeholder="กรุณากรอกข้อความของคุณที่นี่..." rows="5"></textarea>
           <button>ส่งข้อความ</button>
         </div>
-      
+
         <!-- ข้อมูลติดต่อ -->
         <div class="contact-infoo">
           <h3>ข้อมูลติดต่อแอดมิน</h3>
           <p>อีเมล: admin@example.com</p>
           <p>โทรศัพท์: 123-456-7890</p>
         </div>
-      
+
         <!-- ข้อความขอบคุณ -->
         <div class="thank-you-message">
           <p>ขอบคุณที่ติดต่อแอดมิน! เราจะติดต่อกลับโดยเร็วที่สุด</p>
@@ -309,124 +338,221 @@
       <!-- Content Area -->
       <div id="tab-profile" class="tab-content active">
         <h3 class="text-2xl font-bold mb-6">จัดการบัญชี</h3>
-        <form action="update_profile.php" method="POST" enctype="multipart/form-data" class="profile-form">
-            <!-- รูปโปรไฟล์ -->
-            <div class="profile-pic-container">
-                <img src="uploads/default-profile.jpg" alt="รูปโปรไฟล์" class="profile-pic-preview" id="profilePreview">
-                <input type="file" name="profile_image" id="profileImageInput" onchange="previewImage(event)">
-            </div>
-            
-            <!-- ชื่อผู้ใช้ -->
-            <div>
-                <label>ชื่อผู้ใช้:</label><br>
-                <input type="text" name="username" value="ชื่อผู้ใช้เดิม">
-            </div>
-    
-            <!-- ชื่อ - นามสกุล -->
-            <div>
-                <label>ชื่อ - นามสกุล:</label><br>
-                <input type="text" name="full_name" value="สมชาย ใจดี">
-            </div>
-            
-            <!-- Email -->
-            <div>
-                <label>Email:</label><br>
-                <input type="email" name="email" value="user@example.com">
-            </div>
-            
-            <!-- เบอร์โทร -->
-            <div>
-                <label>เบอร์โทรศัพท์:</label><br>
-                <input type="tel" name="phone" value="0891234567">
-            </div>
-            
-            <!-- วันเกิด -->
-            <div>
-                <label>วันเกิด:</label><br>
-                <input type="date" name="birthdate" value="1990-01-01">
-            </div>
-            
-            <!-- อาชีพ -->
-            <div>
-                <label>อาชีพ:</label><br>
-                <input type="text" name="occupation" value="นักพัฒนาเว็บไซต์">
-            </div>
-            
-            <!-- ที่อยู่ -->
-            <div>
-                <label>ที่อยู่:</label><br>
-                <textarea name="address" rows="4" placeholder="กรอกที่อยู่ของคุณที่นี่">กรุงเทพฯ</textarea>
-            </div>
-    
-            <!-- อำเภอ -->
-            <div>
-                <label>อำเภอ:</label><br>
-                <input type="text" name="district" value="บางนา">
-            </div>
-            
-            <!-- ตำบล -->
-            <div>
-                <label>ตำบล:</label><br>
-                <input type="text" name="subdistrict" value="บางจาก">
-            </div>
-            
-            <!-- จังหวัด -->
-            <div>
-                <label>จังหวัด:</label><br>
-                <input type="text" name="province" value="กรุงเทพมหานคร">
-            </div>
-            
-            <!-- รหัสไปรษณีย์ -->
-            <div>
-                <label>รหัสไปรษณีย์:</label><br>
-                <input type="text" name="zipcode" value="10260">
-            </div>
-            
-            <!-- ปุ่มบันทึก -->
-            <div style="margin-top: 15px;">
-                <button type="submit">บันทึกข้อมูล</button>
-            </div>
+        <form id="update_profile" method="POST" enctype="multipart/form-data" class="profile-form">
+          <!-- รูปโปรไฟล์ -->
+          <div class="profile-pic-container">
+            <img src="../../api/User/uploads/68347204dc9ec.jpg" class="profile-pic-preview" id="profilePreview">
+            <label for="image">เลือกรูปภาพ:</label>
+            <input type="file" name="image" id="image" accept="image/*" onchange="previewImage(event)">
+            <p id="file_name"></p>
+          </div>
+          <!-- ชื่อผู้ใช้ -->
+          <div>
+            <label>ชื่อผู้ใช้:</label><br>
+            <input type="text" name="username" id="username" value="">
+          </div>
+
+          <!-- ชื่อ - นามสกุล -->
+          <div>
+            <label>ชื่อ - นามสกุล:</label><br>
+            <input type="text" name="full_name" id="full_name" value="">
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label>Email:</label><br>
+            <input type="email" name="email" id="email" value="">
+          </div>
+
+          <!-- เบอร์โทร -->
+          <div>
+            <label>เบอร์โทรศัพท์:</label><br>
+            <input type="tel" name="phone" id="phone" value="">
+          </div>
+
+          <!-- วันเกิด -->
+          <div>
+            <label>วันเกิด:</label><br>
+            <input type="date" name="birthdate" id="birthdate" value="">
+          </div>
+
+          <!-- อาชีพ -->
+          <div>
+            <label>อาชีพ:</label><br>
+            <input type="text" name="occupation" id="occupation" value="">
+          </div>
+
+          <!-- ที่อยู่ -->
+          <div>
+            <label>ที่อยู่:</label><br>
+            <textarea name="address" rows="4" id="address" placeholder="กรอกที่อยู่ของคุณที่นี่">กรุงเทพฯ</textarea>
+          </div>
+
+          <!-- อำเภอ -->
+          <div>
+            <label>อำเภอ:</label><br>
+            <input type="text" name="district" id="district" value="">
+          </div>
+
+          <!-- ตำบล -->
+          <div>
+            <label>ตำบล:</label><br>
+            <input type="text" name="subdistrict" id="subdistrict" value="">
+          </div>
+
+          <!-- จังหวัด -->
+          <div>
+            <label>จังหวัด:</label><br>
+            <input type="text" name="province" id="province" value="">
+          </div>
+
+          <!-- รหัสไปรษณีย์ -->
+          <div>
+            <label>รหัสไปรษณีย์:</label><br>
+            <input type="text" name="zipcode" id="zipcode" value="">
+          </div>
+
+          <!-- ปุ่มบันทึก -->
+          <div style="margin-top: 15px;">
+            <button type="submit">บันทึกข้อมูล</button>
+          </div>
         </form>
-    </div>
+      </div>
 
     </div>
   </div>
 
   <script>
     function showTab(tabId) {
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(tab => tab.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
     }
 
     function togglePortfolioForm() {
-        const form = document.getElementById('portfolio-form');
-        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+      const form = document.getElementById('portfolio-form');
+      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
     }
 
     function toggleAdviceForm() {
-        const form = document.getElementById('adviceForm');
-        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+      const form = document.getElementById('adviceForm');
+      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
     }
 
     function previewImage(event) {
-        const reader = new FileReader();
-        reader.onload = function() {
-            const output = document.getElementById('profilePreview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
+      document.getElementById('file_name').innerText = "";
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById('profilePreview');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
 
     function viewConversation(conversationId) {
-        alert('Viewing conversation: ' + conversationId);
+      alert('Viewing conversation: ' + conversationId);
     }
 
     function submitAdviceForm(event) {
-        event.preventDefault();
-        alert('คำขอคำปรึกษาถูกส่งแล้ว!');
+      event.preventDefault();
+      alert('คำขอคำปรึกษาถูกส่งแล้ว!');
     }
-</script>
-  
+  </script>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../env.js"></script>
+<script>
+  const token = localStorage.getItem('token');
+  if (token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    const jsonData = JSON.parse(jsonPayload);
+    // fetch('http://localhost/my-app/User/get_profile.php', {  // ส่งข้อมูลไป process.php
+    fetch(`${ENV.API_URL}/api/User/get_profile.php`, {  // ส่งข้อมูลไป process.php
+      // fetch('https://my-php-api-1.onrender.com/api/User/get_profile.php', {  // ส่งข้อมูลไป process.php
+      method: "POST",
+      body: JSON.stringify(jsonData)
+    })
+      .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
+      .then(data => {
+        document.getElementById('file_name').innerText = data.data.image;
+        document.getElementById('username').value = data.data.username;
+        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.image}`;
+        document.getElementById('profilePreview').src = `${ENV.API_URL}/api/User/uploads/${data.data.image}`;
+        // document.getElementById('display-profile-image').src = `${}/User/uploads/${data.data.image}`;
+        document.getElementById('full_name').value = data.data.full_name;
+        // document.getElementById('display-full-name').innerText = data.data.full_name;
+        document.getElementById('display-profile-fullname').innerText = data.data.full_name;
+        document.getElementById('email').value = data.data.email;
+        document.getElementById('phone').value = data.data.phone;
+        document.getElementById('birthdate').value = data.data.birthdate;
+        document.getElementById('occupation').value = data.data.occupation;
+        document.getElementById('address').value = data.data.address;
+        document.getElementById('district').value = data.data.district;
+        document.getElementById('subdistrict').value = data.data.subdistrict;
+        document.getElementById('province').value = data.data.province;
+        document.getElementById('zipcode').value = data.data.zipcode;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "ดึงข้อมูลสำเร็จ!",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "ไม่พบข้อมูล!",
+          text: error,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        console.error('Error:', error);
+      });
+    document.getElementById('update_profile').addEventListener('submit', function (event) {
+      event.preventDefault(); // ป้องกันหน้ารีโหลด
+
+      const formData = new FormData(this);
+      formData.append("uid", jsonData.uid);
+      formData.append("file_name", document.getElementById('file_name').innerText);
+      // fetch('http://localhost/my-app/User/update_profile.php', {  // ส่งข้อมูลไป process.php
+      fetch(`${ENV.API_URL}/api/User/update_profile.php`, {  // ส่งข้อมูลไป process.php
+        // fetch('https://my-php-api-1.onrender.com/api/User/update_profile.php', {  // ส่งข้อมูลไป process.php
+        method: 'POST',
+        body: formData,
+      })
+        .then(response => response.text()) // หรือ .json() ถ้า PHP ส่ง JSON
+        .then(data => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "สำเร็จ!",
+            text: data,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
+        .catch(error => {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "ไม่สำเร็จ!",
+            text: error,
+            showConfirmButton: false,
+            timer: 1500
+          });
+          console.error('Error:', error);
+        });
+    });
+  }
+
+</script>
+
 </html>
