@@ -17,14 +17,14 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // เตรียมคำสั่ง SQL
-$sql = "SELECT * FROM customer WHERE username = '$username'";
+$sql = "SELECT * FROM member WHERE Username = '$username'";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
-    if (password_verify($password, $row["password"])) {
+    if (password_verify($password, $row["Password"])) {
         // 🟢 รหัสผ่านถูกต้อง → สร้าง JWT
         $payload = [
-            'uid' => (int) $row['id'],
+            'MemberID' => $row['MemberID'],
             'username' => $username,
             'exp' => time() + 3600 // หมดอายุใน 1 ชม.
         ];

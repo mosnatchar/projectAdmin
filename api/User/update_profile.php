@@ -13,7 +13,7 @@ require_once '../connect_db.php';
 
 
 //  รับค่าจากฟอร์ม
-$uid = $_POST['uid'];
+$member_id = $_POST['member_id'];
 $full_name = $_POST['full_name'];
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -48,28 +48,26 @@ if ($file_name === "") {
 
         // ย้ายไฟล์ไปยังโฟลเดอร์
         if (move_uploaded_file($tmpName, $destination)) {
-            $sql = "INSERT INTO profile (uid, full_name, image, username, email, phone, birthdate, occupation, address, district, subdistrict, province, zipcode, create_date, update_date)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+            $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
-    uid = VALUES(uid),
-    full_name = VALUES(full_name),
-    image = VALUES(image),
-    username = VALUES(username),
-    email = VALUES(email),
-    phone = VALUES(phone),
-    birthdate = VALUES(birthdate),
-    occupation = VALUES(occupation),
-    address = VALUES(address),
-    district = VALUES(district),
-    subdistrict = VALUES(subdistrict),
-    province = VALUES(province),
-    zipcode = VALUES(zipcode),
-    create_date = VALUES(create_date),
-    update_date = VALUES(update_date)";
+    MemberID = VALUES(memberID),
+    FullName = VALUES(FullName),
+    ProfileImage = VALUES(ProfileImage),
+    Username = VALUES(Username),
+    Email = VALUES(Email),
+    Telephone = VALUES(Telephone),
+    BirthDate = VALUES(BirthDate),
+    Occupation = VALUES(Occupation),
+    Address = VALUES(Address),
+    District = VALUES(District),
+    Subdistrict = VALUES(Subdistrict),
+    Province = VALUES(Province),
+    ZipCode = VALUES(ZipCode)";
 
             //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssssssssss", $uid, $full_name, $newName, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
+            $stmt->bind_param("sssssssssssss", $member_id, $full_name, $newName, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
 
             //  Execute
             if ($stmt->execute()) {
@@ -87,28 +85,26 @@ ON DUPLICATE KEY UPDATE
     }
 } else {
 
-    $sql = "INSERT INTO profile (uid, full_name, image, username, email, phone, birthdate, occupation, address, district, subdistrict, province, zipcode, create_date, update_date)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+    $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
-    uid = VALUES(uid),
-    full_name = VALUES(full_name),
-    image = VALUES(image),
-    username = VALUES(username),
-    email = VALUES(email),
-    phone = VALUES(phone),
-    birthdate = VALUES(birthdate),
-    occupation = VALUES(occupation),
-    address = VALUES(address),
-    district = VALUES(district),
-    subdistrict = VALUES(subdistrict),
-    province = VALUES(province),
-    zipcode = VALUES(zipcode),
-    create_date = VALUES(create_date),
-    update_date = VALUES(update_date)";
+    MemberID = VALUES(memberID),
+    FullName = VALUES(FullName),
+    ProfileImage = VALUES(ProfileImage),
+    Username = VALUES(Username),
+    Email = VALUES(Email),
+    Telephone = VALUES(Telephone),
+    BirthDate = VALUES(BirthDate),
+    Occupation = VALUES(Occupation),
+    Address = VALUES(Address),
+    District = VALUES(District),
+    Subdistrict = VALUES(Subdistrict),
+    Province = VALUES(Province),
+    ZipCode = VALUES(ZipCode)";
 
     //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssssssss", $uid, $full_name, $file_name, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
+    $stmt->bind_param("sssssssssssss", $member_id, $full_name, $file_name, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
 
     //  Execute
     if ($stmt->execute()) {

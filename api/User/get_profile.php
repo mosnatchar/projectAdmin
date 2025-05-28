@@ -19,11 +19,11 @@ $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
 // ตรวจสอบและใช้งานข้อมูล
-$uid = $data['uid'] ?? '';
+$memberId = $data['MemberID'] ?? '';
 
 
 // เตรียมคำสั่ง SQL
-$sql = "SELECT * FROM profile WHERE uid = '$uid'";
+$sql = "SELECT * FROM member WHERE MemberID = '$memberId'";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);

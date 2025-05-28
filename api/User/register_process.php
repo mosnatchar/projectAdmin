@@ -12,6 +12,7 @@ header('Content-Type: application/json; charset=utf-8');
 require_once '../connect_db.php';
 
 //  รับค่าจากฟอร์ม
+$member_id = uniqid();
 $fullname = $_POST['fullname'];
 $username = $_POST['username'];
 $password = $_POST['password']; // 👉 คุณสามารถเข้ารหัสด้วย password_hash ได้
@@ -19,12 +20,12 @@ $password = $_POST['password']; // 👉 คุณสามารถเข้า�
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // เตรียมคำสั่ง SQL
-$sql = "INSERT INTO customer (full_name, username, password, create_date, update_date)
-        VALUES (?, ?, ?, NOW(), NOW())";
+$sql = "INSERT INTO member (MemberID, FullName, Username, Password)
+        VALUES (?, ?, ?, ?)";
 
 //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $fullname, $username, $hashedPassword);
+$stmt->bind_param("ssss", $member_id, $fullname, $username, $hashedPassword);
 
 //  Execute
 if ($stmt->execute()) {

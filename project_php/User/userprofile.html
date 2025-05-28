@@ -367,7 +367,7 @@
           <!-- เบอร์โทร -->
           <div>
             <label>เบอร์โทรศัพท์:</label><br>
-            <input type="tel" name="phone" id="phone" value="">
+            <input type="tel" name="phone" id="phone" value="" maxlength="10">
           </div>
 
           <!-- วันเกิด -->
@@ -481,23 +481,23 @@
     })
       .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
       .then(data => {
-        document.getElementById('file_name').innerText = data.data.image;
-        document.getElementById('username').value = data.data.username;
-        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.image}`;
-        document.getElementById('profilePreview').src = `${ENV.API_URL}/api/User/uploads/${data.data.image}`;
-        // document.getElementById('display-profile-image').src = `${}/User/uploads/${data.data.image}`;
-        document.getElementById('full_name').value = data.data.full_name;
+        document.getElementById('file_name').innerText = data.data.ProfileImage;
+        document.getElementById('username').value = data.data.Username;
+        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.ProfileImage}`;
+        document.getElementById('profilePreview').src = `${ENV.API_URL}/api/User/uploads/${data.data.ProfileImage}`;
+        // document.getElementById('display-profile-image').src = `${}/User/uploads/${data.data.ProfileImage}`;
+        document.getElementById('full_name').value = data.data.FullName;
         // document.getElementById('display-full-name').innerText = data.data.full_name;
-        document.getElementById('display-profile-fullname').innerText = data.data.full_name;
-        document.getElementById('email').value = data.data.email;
-        document.getElementById('phone').value = data.data.phone;
-        document.getElementById('birthdate').value = data.data.birthdate;
-        document.getElementById('occupation').value = data.data.occupation;
-        document.getElementById('address').value = data.data.address;
-        document.getElementById('district').value = data.data.district;
-        document.getElementById('subdistrict').value = data.data.subdistrict;
-        document.getElementById('province').value = data.data.province;
-        document.getElementById('zipcode').value = data.data.zipcode;
+        document.getElementById('display-profile-fullname').innerText = data.data.FullName;
+        document.getElementById('email').value = data.data.Email;
+        document.getElementById('phone').value = data.data.Telephone;
+        document.getElementById('birthdate').value = data.data.BirthDate;
+        document.getElementById('occupation').value = data.data.Occupation;
+        document.getElementById('address').value = data.data.Address;
+        document.getElementById('district').value = data.data.District;
+        document.getElementById('subdistrict').value = data.data.SubDistrict;
+        document.getElementById('province').value = data.data.Province;
+        document.getElementById('zipcode').value = data.data.ZipCode;
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -521,7 +521,7 @@
       event.preventDefault(); // ป้องกันหน้ารีโหลด
 
       const formData = new FormData(this);
-      formData.append("uid", jsonData.uid);
+      formData.append("member_id", jsonData.MemberID);
       formData.append("file_name", document.getElementById('file_name').innerText);
       // fetch('http://localhost/my-app/User/update_profile.php', {  // ส่งข้อมูลไป process.php
       fetch(`${ENV.API_URL}/api/User/update_profile.php`, {  // ส่งข้อมูลไป process.php

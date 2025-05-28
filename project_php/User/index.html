@@ -271,8 +271,8 @@
     })
       .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
       .then(data => {
-        document.getElementById('display-fullname').innerText = data.data.full_name;
-        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.image}`;
+        document.getElementById('display-fullname').innerText = data.data.FullName;
+        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.ProfileImage}`;
 
         // Swal.fire({
         //   position: "top-end",
