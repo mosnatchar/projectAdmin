@@ -1,5 +1,5 @@
 // env.js
 const ENV = {
   API_URL:
-    "https://b012-2403-6200-88a4-b7dd-44e7-d682-480c-ef22.ngrok-free.app",
+    "https://aad1-2403-6200-88a4-b7dd-d4f6-16e6-b959-f7c7.ngrok-free.app",
 };
