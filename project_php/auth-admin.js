@@ -17,18 +17,18 @@ function verifyToken() {
         ) {
           localStorage.removeItem("token");
           setTimeout(() => {
-            location.href = "login.html";
+            location.href = "../User/login.html";
           }, 1000);
         }
       })
       .catch((error) => {
         localStorage.removeItem("token");
         setTimeout(() => {
-          location.href = "login.html";
+          location.href = "../User/login.html";
         }, 1000);
       });
   } else {
-    location.href = "login.html";
+    location.href = "../User/login.html";
   }
 }
 function logOut() {

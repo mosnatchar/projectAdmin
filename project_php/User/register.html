@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>สมัครสมาชิก | ศูนย์ฝึกวิชาชีพ</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
 
@@ -196,9 +197,9 @@
       <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">หน้าหลัก</a></li>
+      <!-- <li><a href="index.html">หน้าหลัก</a></li>
       <li><a href="courses.html">คอร์สอบรม</a></li>
-      <li><a href="performance.html">ผลงานและบริการ</a></li>
+      <li><a href="performance.html">ผลงานและบริการ</a></li> -->
       <li><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
     </ul>
   </nav>
@@ -218,6 +219,13 @@
 
       <label for="confirm_password">ยืนยันรหัสผ่าน</label>
       <input type="password" id="confirm_password" name="confirm_password">
+
+      <label for="permission">สิทธิ์การเข้าถึง</label>
+      <select class="w-full mb-6 h-10 text-black" name="permission" id="permission">
+        <option class="text-black" value="User">User</option>
+        <option class="text-black" value="Admin">Admin</option>
+        <option class="text-black" value="Expert">Expert</option>
+      </select>
 
       <button type="submit">สมัครสมาชิก</button>
     </form>
@@ -284,7 +292,7 @@
     const formData = new FormData(this);
 
     // fetch('http://localhost/my-app/User/register_process.php', {  // ส่งข้อมูลไป process.php
-    fetch(`${ENV.API_URL}/api/User/register_process.php`, {  // ส่งข้อมูลไป process.php
+    fetch(`${ENV.API_URL}/User/register_process.php`, {  // ส่งข้อมูลไป process.php
       // fetch('https://my-php-api-1.onrender.com/api/User/register_process.php', {  // ส่งข้อมูลไป process.php
       method: 'POST',
       body: formData
@@ -300,7 +308,7 @@
           timer: 1500
         });
         setTimeout(() => {
-          location.href = "login.html";
+          // location.href = "login.html";
         }, 2000);
       })
       .catch(error => {

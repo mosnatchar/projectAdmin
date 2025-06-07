@@ -26,6 +26,7 @@ $subdistrict = $_POST['subdistrict'];
 $province = $_POST['province'];
 $zipcode = $_POST['zipcode'];
 $file_name = $_POST['file_name'];
+$permission = $_POST['permission'];
 
 // ตรวจสอบว่ามีการอัปโหลดไฟล์
 if ($file_name === "") {
@@ -48,8 +49,8 @@ if ($file_name === "") {
 
         // ย้ายไฟล์ไปยังโฟลเดอร์
         if (move_uploaded_file($tmpName, $destination)) {
-            $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode, Permission)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
     MemberID = VALUES(memberID),
     FullName = VALUES(FullName),
@@ -63,11 +64,12 @@ ON DUPLICATE KEY UPDATE
     District = VALUES(District),
     Subdistrict = VALUES(Subdistrict),
     Province = VALUES(Province),
-    ZipCode = VALUES(ZipCode)";
+    ZipCode = VALUES(ZipCode),
+    Permission = VALUES(Permission)";
 
             //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssssssssss", $member_id, $full_name, $newName, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
+            $stmt->bind_param("ssssssssssssss", $member_id, $full_name, $newName, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode, $permission);
 
             //  Execute
             if ($stmt->execute()) {
@@ -85,8 +87,8 @@ ON DUPLICATE KEY UPDATE
     }
 } else {
 
-    $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    $sql = "INSERT INTO member (MemberID, FullName, ProfileImage, Username, Email, Telephone, BirthDate, Occupation, Address, District, Subdistrict, Province, ZipCode, Permission)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE
     MemberID = VALUES(memberID),
     FullName = VALUES(FullName),
@@ -100,11 +102,12 @@ ON DUPLICATE KEY UPDATE
     District = VALUES(District),
     Subdistrict = VALUES(Subdistrict),
     Province = VALUES(Province),
-    ZipCode = VALUES(ZipCode)";
+    ZipCode = VALUES(ZipCode),
+    Permission = VALUES(Permission)";
 
     //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssssssss", $member_id, $full_name, $file_name, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode);
+    $stmt->bind_param("ssssssssssssss", $member_id, $full_name, $file_name, $username, $email, $phone, $birthdate, $occupation, $address, $district, $subdistrict, $province, $zipcode, $permission);
 
     //  Execute
     if ($stmt->execute()) {

@@ -16,16 +16,17 @@ $member_id = uniqid();
 $fullname = $_POST['fullname'];
 $username = $_POST['username'];
 $password = $_POST['password']; // 👉 คุณสามารถเข้ารหัสด้วย password_hash ได้
+$permission = $_POST['permission'];
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // เตรียมคำสั่ง SQL
-$sql = "INSERT INTO member (MemberID, FullName, Username, Password)
-        VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO member (MemberID, FullName, Username, Password, Permission)
+        VALUES (?, ?, ?, ?, ?)";
 
 //  ใช้ Prepared Statement เพื่อความปลอดภัย (ป้องกัน SQL Injection)
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $member_id, $fullname, $username, $hashedPassword);
+$stmt->bind_param("sssss", $member_id, $fullname, $username, $hashedPassword, $permission);
 
 //  Execute
 if ($stmt->execute()) {

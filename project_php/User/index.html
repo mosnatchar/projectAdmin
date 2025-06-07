@@ -11,28 +11,9 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
-    </div>
-    <ul class="flex flex-row items-center justify-around w-1/2">
-      <li><a href="index.html">หน้าหลัก</a></li>
-      <li><a href="courses.html">คอร์สอบรม</a></li>
-      <li><a href="performance.html">ผลงานและบริการ</a></li>
-      <li id="index-login"><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
-      <li id="index-profile" hidden>
-        <div class="dropdown">
-          <button class="dropbtn"><img src="" alt="" srcset="" id="image-profile">
-            <p id="display-fullname"></p>
-          </button>
-          <div class="dropdown-content">
-            <a href="userprofile.html">ดูโปรไฟล์</a>
-            <a style="cursor: pointer;" onclick="logOut()">ออกจากระบบ</a>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </nav>
+  <div id="navbar">
+
+  </div>
 
   <!-- Section Content -->
   <section class="main-section" id="hero">
@@ -46,41 +27,8 @@
   </section>
 
   <section class="featured-project">
-    <div class="featured-content">
-      <div class="featured-image">
-        <img
-          src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q1NTfGVufDB8fDB8fHww"
-          alt="รูปโครงการอบรม" />
-      </div>
-      <div class="featured-details">
-        <h2>โครงการอบรม: พัฒนาเว็บไซต์ด้วย HTML/CSS/JS</h2>
-        <p>อบรมเชิงปฏิบัติการเกี่ยวกับการพัฒนาเว็บไซต์พื้นฐาน เหมาะสำหรับผู้เริ่มต้น หรือผู้ที่ต้องการพัฒนาทักษะ
-          Front-End</p>
-        <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคารวิทยาศาสตร์ ชั้น 3</p>
-        <!-- ปุ่มเดิม -->
-        <a href="#" class="register-btn" onclick="openModal()">ลงทะเบียน</a>
+    <div id="show-training">
 
-        <!--  Modal Register Form -->
-        <div id="registerModal" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>ฟอร์มลงทะเบียนเข้าร่วมอบรม</h2>
-            <form>
-              <label for="fullname" style="color: black;">ชื่อ-นามสกุล</label>
-              <input type="text" id="fullname" name="fullname" required>
-
-              <label for="phone" style="color: black;">เบอร์โทรศัพท์</label>
-              <input type="tel" id="phone" name="phone" required>
-
-              <label for="email" style="color: black;">อีเมล</label>
-              <input type="email" id="email" name="email" required>
-
-              <button type="submit">ส่งข้อมูล</button>
-            </form>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
 
@@ -88,39 +36,10 @@
   <section class="training-projects">
     <div class="training-container">
       <div class="section-title">
-        <h2>โครงการอบรมที่กำลังจะเกิดขึ้น</h2>
+        <div class="text-white text-3xl">โครงการอบรมที่กำลังจะเกิดขึ้น</div>
       </div>
-      <div class="training-list">
-        <div class="training-card">
-          <img
-            src="https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rmx1dHRlcnxlbnwwfHwwfHx8MA%3D%3D"
-            alt="training image" class="training-img" />
-          <div class="training-content">
-            <h3>พัฒนาแอปพลิเคชันด้วย Flutter</h3>
-            <p>เรียนรู้การพัฒนาแอปพลิเคชันมือถือข้ามแพลตฟอร์มด้วย Flutter</p>
-            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
-            <a href="#details" class="btn">ดูรายละเอียด</a>
-          </div>
-        </div>
-        <div class="training-card">
-          <img src="" alt="training image" class="training-img" />
-          <div class="training-content">
-            <h3>การจัดการฐานข้อมูล MySQL</h3>
-            <p>เรียนรู้การออกแบบและจัดการฐานข้อมูลในระบบ MySQL</p>
-            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
-            <a href="#details" class="btn">ดูรายละเอียด</a>
-          </div>
-        </div>
-        <div class="training-card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3bK16kVYNWBjhxZ6CbhEf6m2cq6SdhPbmQ&s"
-            alt="training image" class="training-img" />
-          <div class="training-content">
-            <h3>เทคนิคความปลอดภัยไซเบอร์</h3>
-            <p>เรียนรู้พื้นฐานความปลอดภัยไซเบอร์และวิธีการป้องกันข้อมูลจากการโจมตี</p>
-            <p><strong>สถานที่:</strong> ห้องปฏิบัติการคอมพิวเตอร์ อาคาร 8 มหาวิทยาลัยราชภัฏเลย</p>
-            <a href="#details" class="btn">ดูรายละเอียด</a>
-          </div>
-        </div>
+      <div class="training-list" id="show-training-comming-soon">
+
       </div>
     </div>
   </section>
@@ -176,9 +95,8 @@
       <div class="footer-left">
         <h3>ติดตามเพจศูนย์ฝึก</h3>
         <div class="fb-box-vertical">
-          <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=61554638219599" data-tabs="timeline"
-            data-width="250" data-height="400" data-small-header="false" data-adapt-container-width="true"
-            data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=61554638219599" data-tabs="timeline" data-width="250" data-height="400" data-small-header="false"
+            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
             <blockquote cite="https://www.facebook.com/profile.php?id=61554638219599" class="fb-xfbml-parse-ignore">
               <a href="https://www.facebook.com/profile.php?id=61554638219599">
                 ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย
@@ -263,52 +181,9 @@
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../auth.js"></script>
 <script src="../env.js"></script>
-<script>
-  const token = localStorage.getItem('token');
-  if (token) {
-    document.getElementById('index-login').hidden = true;
-    document.getElementById('index-profile').hidden = false;
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    const jsonData = JSON.parse(jsonPayload);
-    // fetch('http://localhost/my-app/User/get_profile.php', {  // ส่งข้อมูลไป process.php
-    fetch(`${ENV.API_URL}/api/User/get_profile.php`, {  // ส่งข้อมูลไป process.php
-      // fetch('https://my-php-api-1.onrender.com/api/User/get_profile.php', {  // ส่งข้อมูลไป process.php
-      method: "POST",
-      body: JSON.stringify(jsonData)
-    })
-      .then(response => response.json()) // หรือ .json() ถ้า PHP ส่ง JSON
-      .then(data => {
-        document.getElementById('display-fullname').innerText = data.data.FullName;
-        document.getElementById('image-profile').src = `${ENV.API_URL}/api/User/uploads/${data.data.ProfileImage}`;
-
-        // Swal.fire({
-        //   position: "top-end",
-        //   icon: "success",
-        //   title: "สำเร็จ!",
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // });
-      })
-      .catch(error => {
-        // Swal.fire({
-        //   position: "top-end",
-        //   icon: "error",
-        //   title: "ไม่พบข้อมูล!",
-        //   text: error,
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // });
-        console.error('Error:', error);
-      });
-  }
-
-</script>
+<script src="../header-users.js"></script>
+<script src="../auth.js"></script>
+<script src="./js/manage-user.js"></script>
 
 </html>

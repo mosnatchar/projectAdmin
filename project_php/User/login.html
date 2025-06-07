@@ -206,9 +206,9 @@
       <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html">หน้าหลัก</a></li>
+      <!-- <li><a href="index.html">หน้าหลัก</a></li>
       <li><a href="courses.html">คอร์สอบรม</a></li>
-      <li><a href="performance.html">ผลงานและบริการ</a></li>
+      <li><a href="performance.html">ผลงานและบริการ</a></li> -->
       <li><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
     </ul>
   </nav>
@@ -306,9 +306,8 @@
     event.preventDefault(); // ป้องกันหน้ารีโหลด
 
     const formData = new FormData(this);
-
     // fetch('http://localhost/my-app/User/login_process.php', {  // ส่งข้อมูลไป process.php
-    fetch(`${ENV.API_URL}/api/User/login_process.php`, {  // ส่งข้อมูลไป process.php
+    fetch(`${ENV.API_URL}/User/login_process.php`, {  // ส่งข้อมูลไป process.php
       // fetch('https://my-php-api-1.onrender.com/api/User/login_process.php', {  // ส่งข้อมูลไป process.php
       method: 'POST',
       body: formData
@@ -319,6 +318,8 @@
         // if (remember) {
         // localStorage
         localStorage.setItem('token', data.token);
+        console.log("$$$", data);
+
         // }
         if (data.token) {
           Swal.fire({
@@ -329,8 +330,24 @@
             showConfirmButton: false,
             timer: 1500
           });
+
           setTimeout(() => {
-            location.href = "index.html";
+            switch (data.permission) {
+              case 'User':
+                location.href = "index.html";
+                break;
+              case 'Admin':
+                location.href = "../Admin/admin_dashbord.html";
+                break;
+              case 'Expert':
+                location.href = "../Admin/index.html";
+                break;
+
+              default:
+                location.href = "index.html";
+                break;
+            }
+
           }, 2000);
         } else {
           Swal.fire({

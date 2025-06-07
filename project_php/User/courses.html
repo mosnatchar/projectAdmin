@@ -1,222 +1,276 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <title>คอร์สอบรมทั้งหมด | ศูนย์ฝึกวิชาชีพ</title>
   <link rel="stylesheet" href="styles.css"> <!-- ใช้ไฟล์ CSS เดียวกับหน้าแรก -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Prompt', sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Prompt', sans-serif;
+    }
 
-/* พื้นหลังหลัก */
-body {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-}
+    /* พื้นหลังหลัก */
+    body {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
 
-/* Navbar */
-.navbar {
-  background-color: #111;
-  color: #f0f0f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(255,255,255,0.05);
-}
+    /* Navbar */
+    .navbar {
+      background-color: #111;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
 
-.navbar .logo img {
-  height: 50px;
-}
+    .navbar .logo img {
+      height: 50px;
+    }
 
-.navbar .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
 
-.navbar .nav-links li a {
-  color: #f0f0f0;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
+    .navbar .nav-links li a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
 
-.navbar .nav-links li a:hover {
-  background-color: rgba(255,255,255,0.1);
-}
+    .navbar .nav-links li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-/* Course Container */
-.course-container {
-  max-width: 1100px;
-  margin: 120px auto 50px;
-  padding: 20px;
-}
+    /* Course Container */
+    .course-container {
+      max-width: 1100px;
+      margin: 120px auto 50px;
+      padding: 20px;
+    }
 
-.course-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .course-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.course-header h2 {
-  color: #ffffff;
-  font-size: 32px;
-  margin-bottom: 10px;
-}
+    .course-header h2 {
+      color: #ffffff;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-.course-header p {
-  color: #ccc;
-  font-size: 16px;
-}
+    .course-header p {
+      color: #ccc;
+      font-size: 16px;
+    }
 
-.course-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-.course-card {
-  background: #2a2a2a;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .course-card {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.course-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.7);
-}
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    }
 
-.course-title {
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+    .course-title {
+      font-size: 20px;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
 
-.course-desc {
-  font-size: 15px;
-  color: #ddd;
-  line-height: 1.5;
-}
+    .course-desc {
+      font-size: 15px;
+      color: #ddd;
+      line-height: 1.5;
+    }
 
-/* Footer */
-.footer {
-  background-color: #111;
-  color: #f0f0f0;
-  padding: 40px 20px 20px;
-  margin-top: 60px;
-}
+    /* Footer */
+    .footer {
+      background-color: #111;
+      color: #f0f0f0;
+      padding: 40px 20px 20px;
+      margin-top: 60px;
+    }
 
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-  max-width: 1100px;
-  margin: auto;
-}
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-.footer h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #fff;
-}
+    .footer h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #fff;
+    }
 
-.footer-left, .footer-center, .footer-right {
-  flex: 1;
-  min-width: 250px;
-}
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      flex: 1;
+      min-width: 250px;
+    }
 
-.fb-box-vertical {
-  border-radius: 12px;
-  overflow: hidden;
-}
+    .fb-box-vertical {
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-.quick-links,
-.contact-info {
-  list-style: none;
-  padding: 0;
-}
+    .quick-links,
+    .contact-info {
+      list-style: none;
+      padding: 0;
+    }
 
-.quick-links li,
-.contact-info li {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
+    .quick-links li,
+    .contact-info li {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
 
-.quick-links a {
-  color: #ccc;
-  text-decoration: none;
-  transition: 0.3s;
-}
+    .quick-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-.quick-links a:hover {
-  text-decoration: underline;
-  color: #fff;
-}
+    .quick-links a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
 
-.footer .icon {
-  width: 16px;
-  margin-right: 8px;
-  vertical-align: middle;
-  filter: brightness(0.9);
-}
+    .footer .icon {
+      width: 16px;
+      margin-right: 8px;
+      vertical-align: middle;
+      filter: brightness(0.9);
+    }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 20px;
-  font-size: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-/* Course Footer Button */
-.course-footer {
-  text-align: center;
-  margin-top: 40px;
-}
+    /* Course Footer Button */
+    .course-footer {
+      text-align: center;
+      margin-top: 40px;
+    }
 
-.course-footer a {
-  background-color: #444;
-  color: white;
-  padding: 10px 25px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+    .course-footer a {
+      background-color: #444;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-.course-footer a:hover {
-  background-color: #666;
-}
-</style>
+    .course-footer a:hover {
+      background-color: #666;
+    }
+
+    /* navbar dropdown  */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #333;
+      color: white;
+      padding: 7px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      width: 200px;
+      justify-content: space-around;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #555;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #444;
+    }
+
+    #image-profile {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <a href="#"><img src="image/Unknown-5.jpg" alt="LRU Logo" /></a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="index.html">หน้าหลัก</a></li>
-      <li><a href="courses.html">คอร์สอบรม</a></li>
-      <li><a href="performance.html">ผลงานและบริการ</a></li>
-      <li><a href="login.html">เข้าสู่ระบบ / ลงทะเบียน</a></li>
-    </ul>
-  </nav>
+  <div id="navbar">
+
+  </div>
+
 
   <!-- Course Content -->
   <div class="course-container">
@@ -226,37 +280,37 @@ body {
     </div>
 
     <div class="course-list">
-        <div class="course-card">
-          <div class="course-title">อบรมการเขียนเว็บไซต์พื้นฐาน</div>
-          <div class="course-desc">เรียนรู้ HTML, CSS, JavaScript สำหรับผู้เริ่มต้นพัฒนาเว็บไซต์</div>
-        </div>
-      
-        <div class="course-card">
-          <div class="course-title">อบรมการใช้โปรแกรม Excel เพื่อการวิเคราะห์ข้อมูล</div>
-          <div class="course-desc">รู้จักกับฟังก์ชันสำคัญ การจัดการข้อมูล และสร้างกราฟใน Excel</div>
-        </div>
-      
-        <div class="course-card">
-          <div class="course-title">คอร์สพัฒนาแอปพลิเคชันมือถือด้วย Flutter</div>
-          <div class="course-desc">เรียนรู้การสร้าง Mobile App ทั้ง iOS และ Android ด้วยภาษา Dart</div>
-        </div>
-      
-        <div class="course-card">
-          <div class="course-title">อบรมทักษะการออกแบบ UX/UI</div>
-          <div class="course-desc">เข้าใจพื้นฐานของการออกแบบประสบการณ์ผู้ใช้และอินเทอร์เฟซที่น่าใช้งาน</div>
-        </div>
-      
-        <div class="course-card">
-          <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python และ Pandas</div>
-          <div class="course-desc">ปูพื้นฐานการเขียน Python เพื่อวิเคราะห์และจัดการข้อมูล</div>
-        </div>
-      
-        <div class="course-card">
-          <div class="course-title">พื้นฐานการสร้างเว็บไซต์ด้วย WordPress</div>
-          <div class="course-desc">เรียนรู้การใช้ WordPress เพื่อสร้างเว็บไซต์ได้ง่ายโดยไม่ต้องเขียนโค้ด</div>
-        </div>
+      <div class="course-card">
+        <div class="course-title">อบรมการเขียนเว็บไซต์พื้นฐาน</div>
+        <div class="course-desc">เรียนรู้ HTML, CSS, JavaScript สำหรับผู้เริ่มต้นพัฒนาเว็บไซต์</div>
       </div>
-      
+
+      <div class="course-card">
+        <div class="course-title">อบรมการใช้โปรแกรม Excel เพื่อการวิเคราะห์ข้อมูล</div>
+        <div class="course-desc">รู้จักกับฟังก์ชันสำคัญ การจัดการข้อมูล และสร้างกราฟใน Excel</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">คอร์สพัฒนาแอปพลิเคชันมือถือด้วย Flutter</div>
+        <div class="course-desc">เรียนรู้การสร้าง Mobile App ทั้ง iOS และ Android ด้วยภาษา Dart</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">อบรมทักษะการออกแบบ UX/UI</div>
+        <div class="course-desc">เข้าใจพื้นฐานของการออกแบบประสบการณ์ผู้ใช้และอินเทอร์เฟซที่น่าใช้งาน</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python และ Pandas</div>
+        <div class="course-desc">ปูพื้นฐานการเขียน Python เพื่อวิเคราะห์และจัดการข้อมูล</div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-title">พื้นฐานการสร้างเว็บไซต์ด้วย WordPress</div>
+        <div class="course-desc">เรียนรู้การใช้ WordPress เพื่อสร้างเว็บไซต์ได้ง่ายโดยไม่ต้องเขียนโค้ด</div>
+      </div>
+    </div>
+
 
     <div class="course-footer">
       <a href="index.html">← กลับหน้าแรก</a>
@@ -266,26 +320,16 @@ body {
   <!-- Footer -->
   <footer class="footer">
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-      src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v22.0">
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v22.0">
     </script>
-  
+
     <div class="footer-container">
       <div class="footer-left">
         <h3>ติดตามเพจศูนย์ฝึก</h3>
         <div class="fb-box-vertical">
-          <div class="fb-page"
-            data-href="https://www.facebook.com/profile.php?id=61554638219599"
-            data-tabs="timeline"
-            data-width="250"
-            data-height="400"
-            data-small-header="false"
-            data-adapt-container-width="true"
-            data-hide-cover="false"
-            data-show-facepile="true">
-            <blockquote
-              cite="https://www.facebook.com/profile.php?id=61554638219599"
-              class="fb-xfbml-parse-ignore">
+          <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=61554638219599" data-tabs="timeline" data-width="250" data-height="400" data-small-header="false"
+            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/profile.php?id=61554638219599" class="fb-xfbml-parse-ignore">
               <a href="https://www.facebook.com/profile.php?id=61554638219599">
                 ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย
               </a>
@@ -314,11 +358,15 @@ body {
         </ul>
       </div>
     </div>
-  
+
     <div class="footer-bottom">
       <p>&copy; 2025 ศูนย์ฝึกวิชาชีพทางด้านวิทยาการคอมพิวเตอร์ มหาวิทยาลัยราชภัฏเลย</p>
     </div>
   </footer>
 
 </body>
+<script src="../env.js"></script>
+<script src="../header-users.js"></script>
+<script src="../auth.js"></script>
+
 </html>

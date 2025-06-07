@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ข้อมูลโครงการอบรม</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
@@ -19,22 +20,26 @@
       border-radius: 0.375rem;
       margin-bottom: 0.25rem;
     }
+
     aside ul li a:hover {
       color: #ff7a00;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       transform: translateX(4px);
     }
+
     aside ul li a::after {
       content: '\2192';
       color: transparent;
       transition: color 0.3s;
       margin-left: auto;
     }
+
     aside ul li a:hover::after {
       color: #ff7a00;
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-800">
   <div class="flex min-h-screen">
     <!-- Sidebar -->
@@ -54,60 +59,37 @@
       </ul>
     </aside>
 
-   <!-- Main Content -->
-<div class="flex-1 p-6">
-    <!-- Navbar -->
-    <div class="flex justify-end items-center mb-6">
-      <span class="mr-4 font-semibold">Admin Name</span>
-      <img src="https://via.placeholder.com/40" class="rounded-full w-10 h-10" alt="Profile">
-    </div>
-  
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-4">
-      <h1 class="text-2xl font-bold">ข้อมูลโครงการอบรม</h1>
-      <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow">
-        + เพิ่มโครงการใหม่
-      </button>
-    </div>
-  
-    <!-- Training Projects Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card 1 -->
-      <!-- Training Project Card -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src="https://via.placeholder.com/600x300" alt="Training Image" class="w-full h-40 object-cover">
-            <div class="p-4">
-            <h2 class="text-lg font-bold mb-1">อบรม HTML/CSS</h2>
-            <p class="text-sm text-gray-600 mb-1">วันที่: 20 เม.ย. 2025 | วิทยากร: อ.สมชาย</p>
-            <p class="text-sm text-gray-700 mb-3">เรียนรู้การสร้างหน้าเว็บด้วย HTML และตกแต่งด้วย CSS สำหรับผู้เริ่มต้น</p>
-            
-            <div class="flex flex-wrap justify-end gap-2">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">แก้ไข</button>
-                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">ลบ</button>
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">ดูรายชื่อผู้ลงทะเบียน</button>
-            </div>
-            </div>
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+      <!-- Navbar -->
+      <div class="flex justify-end items-center mb-6">
+        <span class="mr-4 font-semibold">Admin Name</span>
+        <img src="https://via.placeholder.com/40" class="rounded-full w-10 h-10" alt="Profile">
+      </div>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold">ข้อมูลโครงการอบรม</h1>
+        <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow">
+          + เพิ่มโครงการใหม่
+        </button>
+      </div>
+      <!-- Training Projects Grid -->
+      <div class="">
+        <!-- Card 1 -->
+        <!-- Training Project Card -->
+        <div class="grid grid-cols-3 gap-4" id="show-trianing">
+
         </div>
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img src="https://via.placeholder.com/600x300" alt="Training Image" class="w-full h-40 object-cover">
-            <div class="p-4">
-            <h2 class="text-lg font-bold mb-1">อบรม HTML/CSS</h2>
-            <p class="text-sm text-gray-600 mb-1">วันที่: 20 เม.ย. 2025 | วิทยากร: อ.สมชาย</p>
-            <p class="text-sm text-gray-700 mb-3">เรียนรู้การสร้างหน้าเว็บด้วย HTML และตกแต่งด้วย CSS สำหรับผู้เริ่มต้น</p>
-            
-            <div class="flex flex-wrap justify-end gap-2">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">แก้ไข</button>
-                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">ลบ</button>
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">ดูรายชื่อผู้ลงทะเบียน</button>
-            </div>
-            </div>
-        </div>
-  
-  
-      <!-- เพิ่มบล็อกอื่นๆ ได้ตามต้องการ -->
+        <!-- เพิ่มบล็อกอื่นๆ ได้ตามต้องการ -->
+      </div>
     </div>
-  </div>
-  
+
   </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../env.js"></script>
+<script src="../auth-admin.js"></script>
+<script src="./js/manage_training.js"></script>
+
 </html>

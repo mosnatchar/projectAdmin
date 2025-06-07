@@ -25,6 +25,7 @@ if (mysqli_num_rows($result) > 0) {
         // 🟢 รหัสผ่านถูกต้อง → สร้าง JWT
         $payload = [
             'MemberID' => $row['MemberID'],
+            'Permission' => $row['Permission'],
             'username' => $username,
             'exp' => time() + 3600 // หมดอายุใน 1 ชม.
         ];
@@ -34,6 +35,7 @@ if (mysqli_num_rows($result) > 0) {
 
         echo json_encode([
             "message" => "เข้าสู่ระบบสำเร็จ",
+            "permission" => $row['Permission'],
             "token" => $jwt
         ], JSON_UNESCAPED_UNICODE);
     } else {
